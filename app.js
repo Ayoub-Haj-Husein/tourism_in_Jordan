@@ -1,19 +1,19 @@
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require('body-parser')
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
 const db = require("./db");
 const jwt = require("jsonwebtoken");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const app = express();
 
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 
-app.set("view engine", "ejs")
+app.set("view engine", "ejs");
 
 // Storage Image By Multer Start
 const storage = multer.diskStorage({
@@ -21,8 +21,8 @@ const storage = multer.diskStorage({
     cb(null, "images");
   },
   filename: (req, file, cb) => {
-    console.log(file)
-    cb(null, Date.now() + path.extname(file.originalname))
+    console.log(file);
+    cb(null, Date.now() + path.extname(file.originalname));
   },
 });
 const upload = multer({ storage: storage });
@@ -30,8 +30,8 @@ const upload = multer({ storage: storage });
 
 // test page (test.ejs) Start
 app.get("/add_blog", (req, res) => {
-  res.render("add_blog")
-})
+  res.render("add_blog");
+});
 
 // app.post("/upload", upload.single("image"), (req, res) => {
 //   res.send("image uploaded")
@@ -58,7 +58,7 @@ app.get("/add_blog", (req, res) => {
 //   // Authenticate User
 //   const username = req.body.username
 //   const user = { name: username }
-//   const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+//   const = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
 //   res.json({accessToken: accessToken})
 // })
 
@@ -80,29 +80,38 @@ app.get("/add_blog", (req, res) => {
 // Registration Routes
 app.post("/registration", async (req, res) => {
   try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const { username, email, password, passwordConfirmation } = req.body;
     // Check if the user already exists based on username or email
-    const userExistsQuery = 'SELECT * FROM users WHERE email = $1';
+    const userExistsQuery = "SELECT * FROM users WHERE email = $1";
     const existingUser = await db.query(userExistsQuery, [email]);
     if (existingUser.rows.length > 0) {
       return res.status(400).json({ error: "email is already in use" });
     }
     if (password !== passwordConfirmation) {
-      return res.status(400).json({ error: "Password and password confirmation do not match" });
+      return res
+        .status(400)
+        .json({ error: "Password and password confirmation do not match" });
     }
     // Add the user to the database
-    const insertQuery = 'INSERT INTO users (username, email, password) VALUES ($1, $2, $3)';
-    const result = await db.query(insertQuery, [username, email, hashedPassword]);
+    const insertQuery =
+      "INSERT INTO users (username, email, password) VALUES ($1, $2, $3)";
+    const result = await db.query(insertQuery, [
+      username,
+      email,
+      hashedPassword,
+    ]);
     res.status(201).json({ message: "User added successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "An error occurred while processing your request" });
+    res
+      .status(500)
+      .json({ error: "An error occurred while processing your request" });
   }
 });
 // Create New User End
 
-// Middleware To Check User (Authentication) Old Start 
+// Middleware To Check User (Authentication) Old Start
 // const checkUser = async (req, res, next) => {
 //   const { email, password } = req.body;
 //   try {
@@ -129,7 +138,7 @@ app.post("/registration", async (req, res) => {
 // Middleware To Check User (Authentication) Old End
 
 // Login Routes (Authentication) Start
-app.post('/login', async (req, res) => {
+app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     // Execute the query to search for the user
@@ -142,8 +151,12 @@ app.post('/login', async (req, res) => {
     // Check the password's validity
     const user = result.rows[0];
     const passwordMatch = await bcrypt.compare(password, user.password);
+    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
     if (passwordMatch) {
-      res.send("User logged in successfully");
+      return res.json({
+        accessToken: accessToken,
+        message: "User logged in successfully",
+      });
     } else {
       res.send("Incorrect password");
     }
