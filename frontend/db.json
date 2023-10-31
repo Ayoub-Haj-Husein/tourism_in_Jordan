@@ -1,0 +1,116 @@
+{
+  "Blogs": [
+    {
+      "id": 1,
+      "title": "Firsttitle",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare scelerisque erat sit amet porta. Duis non venenatis dui. ",
+      "image": "https://unsplash.com/photos/a-tall-white-building-next-to-a-tall-yellow-and-white-building-O9ERg9hy_So"
+    },
+    {
+      "id": 2,
+      "title": "Secoundtitle",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare scelerisque erat sit amet porta. Duis non venenatis dui. ",
+      "image": "Secoundurl"
+    },
+    {
+      "id": 3,
+      "title": "Thirdtitle",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare scelerisque erat sit amet porta. Duis non venenatis dui. ",
+      "image": "Thirdurl"
+    },
+    {
+      "id": 4,
+      "title": "4thtitle",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare scelerisque erat sit amet porta. Duis non venenatis dui. c",
+      "image": "4thurl"
+    },
+    {
+      "id": 5,
+      "title": "5thtitle",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare scelerisque erat sit amet porta. Duis non venenatis dui. ",
+      "image": "5thurl"
+    },
+    {
+      "title": "",
+      "description": "",
+      "image": "",
+      "id": 6
+    },
+    {
+      "title": "sadfghj",
+      "description": "adsfgh",
+      "image": "edftyu",
+      "id": 7
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": [
+    {
+      "name": "typicode"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Melad",
+      "email": "meladabulail@gmail.com",
+      "password": "Melad@@",
+      "confirmpassword": "Melad@@"
+    },
+    {
+      "id": 2,
+      "username": "Ayoub",
+      "email": "Ayoub1@gmail.com",
+      "password": "Ayoub@@",
+      "confirmpassword": "Ayoub@@"
+    },
+    {
+      "id": 3,
+      "username": "Ayoub",
+      "email": "Ayoub2@gmail.com",
+      "password": "Ayoub@@",
+      "confirmpassword": "Ayoub@@"
+    },
+    {
+      "id": 4,
+      "username": "Melad",
+      "email": "meladabulail@gmail.com",
+      "password": "Melad@@",
+      "confirmpassword": "Melad@@"
+    },
+    {
+      "id": 5,
+      "username": "Ayoub",
+      "email": "Ayoub3@gmail.com",
+      "password": "Ayoub@@",
+      "confirmpassword": "Ayoub@@"
+    },
+    {
+      "username": "meladabulail",
+      "email": "melad.k.abulail@gmail.com",
+      "password": "Melad0099",
+      "confirmPassword": "Melad0099",
+      "id": 6
+    },
+    {
+      "username": "melad",
+      "email": "Meladabolail@gmail.com",
+      "password": "",
+      "confirmPassword": "",
+      "id": 7
+    }
+  ]
+}
